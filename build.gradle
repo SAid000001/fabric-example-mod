@@ -3,18 +3,28 @@ plugins {
     id 'maven-publish'
 }
 
-version = project.mod_version
-group = project.maven_group
+// Версии (обновлены для 1.21.1)
+version = "1.0.0"
+group = "net.yourname.mod"
+
+// Настройки для переменных
+ext {
+    minecraft_version = "1.21.1"
+    yarn_mappings = "1.21.1+build.1"
+    loader_version = "0.15.7"
+    fabric_version = "0.97.1+1.21.1"
+}
 
 repositories {
-    // Здесь можно добавить дополнительные репозитории
+    mavenCentral()
+    maven { url 'https://maven.fabricmc.net' }
 }
 
 dependencies {
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    mappings "net.fabricmc:yarn:${yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 }
 
 processResources {
@@ -26,4 +36,19 @@ processResources {
     }
 }
 
-// Остальная часть файла остается без изменений
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+    options.release = 17
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.name}" }
+    }
+}
