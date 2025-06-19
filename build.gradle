@@ -6,17 +6,6 @@ plugins {
 version = project.mod_version
 group = project.maven_group
 
-// Проверка переменных
-afterEvaluate {
-    println "=== Конфигурация сборки ==="
-    println "Minecraft: ${project.minecraft_version}"
-    println "Yarn mappings: ${project.yarn_mappings}"
-    println "Fabric Loader: ${project.loader_version}"
-    println "Fabric API: ${project.fabric_version}"
-    println "Group: ${project.maven_group}"
-    println "Version: ${project.mod_version}"
-}
-
 repositories {
     maven { url 'https://maven.fabricmc.net/' }
     mavenCentral()
@@ -37,7 +26,7 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'  // Исправлено: убраны квадратные скобки
+    options.encoding = 'UTF-8'
     options.release = 17
 }
 
