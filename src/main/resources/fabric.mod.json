@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "id": "examplemod",
+  "id": "20heartsmod",
   "version": "${version}",
-  "name": "Example Mod",
-  "description": "Description",
-  "authors": ["You"],
+  "name": "20 Hearts Mod",
+  "description": "Увеличивает здоровье игрока до 20 сердец",
+  "authors": ["YourName"],
   "license": "MIT",
   "environment": "*",
   "entrypoints": {
