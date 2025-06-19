@@ -3,11 +3,10 @@ plugins {
     id 'maven-publish'
 }
 
-// Автоматическое чтение из gradle.properties
 version = project.mod_version
 group = project.maven_group
 
-// Проверка переменных (добавьте этот блок)
+// Проверка переменных
 afterEvaluate {
     println "=== Конфигурация сборки ==="
     println "Minecraft: ${project.minecraft_version}"
@@ -38,7 +37,7 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
+    options.encoding = 'UTF-8'  // Исправлено: убраны квадратные скобки
     options.release = 17
 }
 
